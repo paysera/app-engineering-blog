@@ -1,0 +1,10 @@
+version: '3'
+services:
+    gatsby:
+        build: docker
+        volumes:
+            - ".:/site"
+        working_dir: "/site"
+        command: npm develop
+        ports:
+          - 8000:8000
