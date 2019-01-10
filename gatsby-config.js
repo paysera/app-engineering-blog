@@ -268,6 +268,7 @@ module.exports = {
             options: {
                 include: /svg-icons/
             }
-        }
+        },
+        'gatsby-remark-reading-time'
     ]
 };

@@ -61,6 +61,9 @@ export const postQuery = graphql`
       fields {
         slug
         prefix
+        readingTime {
+          text
+        }
       }
       frontmatter {
         title

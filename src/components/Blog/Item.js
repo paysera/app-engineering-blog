@@ -2,6 +2,7 @@ import { FaArrowRight } from "react-icons/fa/";
 import { FaCalendar } from "react-icons/fa/";
 import { FaTag } from "react-icons/fa/";
 import { FaUser } from "react-icons/fa/";
+import { FaClock } from "react-icons/fa/";
 import Img from "gatsby-image";
 import { Link } from "gatsby";
 import PropTypes from "prop-types";
@@ -12,7 +13,7 @@ const Item = props => {
     theme,
     post: {
       excerpt,
-      fields: { slug, prefix, author },
+      fields: { slug, prefix, author, readingTime: {text: readingTime} },
       frontmatter: {
         title,
         category,
@@ -36,6 +37,9 @@ const Item = props => {
             {title} <FaArrowRight className="arrow" />
           </h1>
           <p className="meta">
+            <span>
+              <FaClock size={18} /> {readingTime}
+            </span>
             <span>
               <FaCalendar size={18} /> {prefix}
             </span>

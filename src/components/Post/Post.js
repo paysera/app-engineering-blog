@@ -23,7 +23,7 @@ const Post = props => {
     post,
     post: {
       html,
-      fields: { prefix, slug },
+      fields: { prefix, slug, readingTime: {text: readingTime} },
       frontmatter: { title, category }
     },
     author,
@@ -37,7 +37,8 @@ const Post = props => {
     <React.Fragment>
       <header>
         <Headline title={title} theme={theme} />
-        <Meta prefix={prefix} authorName={author && author.frontmatter.name} category={category} theme={theme} />
+        <Meta prefix={prefix} authorName={author && author.frontmatter.name} category={category} theme={theme}
+                readingTime={readingTime}/>
       </header>
       <Bodytext html={html} theme={theme} />
       <footer>
