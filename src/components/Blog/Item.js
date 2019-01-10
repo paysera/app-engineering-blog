@@ -17,20 +17,22 @@ const Item = props => {
         title,
         category,
         author,
-        cover: {
-          children: [{ fluid }]
-        }
+        cover: cover
       }
     }
   } = props;
+  
+  const {
+      children: [{ fluid }]
+  } = cover || {children: [{fluid: null}]};
 
   return (
     <React.Fragment>
       <li>
         <Link to={slug} key={slug} className="link">
-          <div className="gatsby-image-outer-wrapper">
+          {(fluid && <div className="gatsby-image-outer-wrapper">
             <Img fluid={fluid} />
-          </div>
+          </div>)}
           <h1>
             {title} <FaArrowRight className="arrow" />
           </h1>
