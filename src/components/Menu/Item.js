@@ -35,7 +35,7 @@ const Item = props => {
 
           :global(svg) {
             margin: 0 ${theme.space.inset.xs} 0 0;
-            opacity: 0.3;
+            // opacity: 0.3;
           }
         }
 
@@ -57,7 +57,7 @@ const Item = props => {
             }
 
             :global(a:hover) {
-              color: ${theme.color.brand.primary};
+              // color: ${theme.color.brand.primary};
               background: color(white alpha(-60%));
             }
 
@@ -66,7 +66,7 @@ const Item = props => {
             }
 
             &:hover :global(svg) {
-              fill: ${theme.color.brand.primary};
+              // fill: ${theme.color.brand.primary};
               opacity: 1;
 
               :global(.hero) & :global(svg) {

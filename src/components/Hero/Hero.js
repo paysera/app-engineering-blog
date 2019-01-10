@@ -10,7 +10,7 @@ const Hero = props => {
     <React.Fragment>
       <section className="hero">
         <h1>
-          This is a demo site of&nbsp;the <strong>heroBlog</strong> GatsbyJS starter
+          Welcome to <strong>Paysera engineering</strong> blog
         </h1>
         <button onClick={scrollToContent} aria-label="scroll">
           <FaArrowDown />
@@ -44,13 +44,13 @@ const Hero = props => {
 
           :global(strong) {
             position: relative;
+            text-shadow: 0 0 ${theme.space.s} ${theme.color.neutral.gray.c};
 
             &::after,
             &::before {
               content: "›";
-              color: ${theme.text.color.attention};
               margin: 0 ${theme.space.xs} 0 0;
-              text-shadow: 0 0 ${theme.space.s} ${theme.color.neutral.gray.k};
+              text-shadow: 0 0 ${theme.space.s} ${theme.color.neutral.gray.c};
             }
             &::after {
               content: "‹";
