@@ -24,9 +24,9 @@ const Post = props => {
     post: {
       html,
       fields: { prefix, slug },
-      frontmatter: { title, author, category }
+      frontmatter: { title, category }
     },
-    authornote,
+    author,
     facebook,
     next: nextPost,
     prev: prevPost,
@@ -37,12 +37,12 @@ const Post = props => {
     <React.Fragment>
       <header>
         <Headline title={title} theme={theme} />
-        <Meta prefix={prefix} author={author} category={category} theme={theme} />
+        <Meta prefix={prefix} authorName={author && author.frontmatter.name} category={category} theme={theme} />
       </header>
       <Bodytext html={html} theme={theme} />
       <footer>
         <Share post={post} theme={theme} />
-        <Author note={authornote} theme={theme} />
+        {author && (<Author author={author} theme={theme} />)}
         <NextPrev next={nextPost} prev={prevPost} theme={theme} />
         <Comments slug={slug} facebook={facebook} theme={theme} />
       </footer>
@@ -52,7 +52,7 @@ const Post = props => {
 
 Post.propTypes = {
   post: PropTypes.object.isRequired,
-  authornote: PropTypes.string.isRequired,
+  author: PropTypes.object,
   facebook: PropTypes.object.isRequired,
   next: PropTypes.object,
   prev: PropTypes.object,

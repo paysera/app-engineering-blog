@@ -80,10 +80,15 @@ export const query = graphql`
     ) {
       edges {
         node {
-          excerpt
+          excerpt(pruneLength: 280)
           fields {
             slug
             prefix
+            author {
+              frontmatter {
+                name
+              }
+            }
           }
           frontmatter {
             title

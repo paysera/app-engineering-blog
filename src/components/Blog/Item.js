@@ -12,11 +12,10 @@ const Item = props => {
     theme,
     post: {
       excerpt,
-      fields: { slug, prefix },
+      fields: { slug, prefix, author },
       frontmatter: {
         title,
         category,
-        author,
         cover: cover
       }
     }
@@ -41,7 +40,7 @@ const Item = props => {
               <FaCalendar size={18} /> {prefix}
             </span>
             <span>
-              <FaUser size={18} /> {author}
+              <FaUser size={18} /> {author.frontmatter.name}
             </span>
             {category && (
               <span>

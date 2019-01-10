@@ -12,13 +12,16 @@ const PostTemplate = props => {
   const {
     data: {
       post,
-      authornote: { html: authorNote },
+      authors,
       site: {
         siteMetadata: { facebook }
       }
     },
     pageContext: { next, prev }
   } = props;
+  
+  const authorNode = authors.edges.find(a => a.node.fields.username === post.frontmatter.author);
+  const author = authorNode ? authorNode.node : undefined;
 
   return (
     <React.Fragment>
@@ -29,7 +32,7 @@ const PostTemplate = props => {
               post={post}
               next={next}
               prev={prev}
-              authornote={authorNote}
+              author={author}
               facebook={facebook}
               theme={theme}
             />
@@ -72,9 +75,20 @@ export const postQuery = graphql`
         }
       }
     }
-    authornote: markdownRemark(fileAbsolutePath: { regex: "/author/" }) {
-      id
-      html
+    authors: allMarkdownRemark(filter:{fields: { source: { eq: "authors" } }}) {
+      edges {
+        node {
+          id
+          html
+          frontmatter {
+            name
+            avatar
+          }
+          fields {
+            username
+          }
+        }
+      }
     }
     site {
       siteMetadata {
