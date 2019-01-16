@@ -14,8 +14,8 @@ exports.onCreateNode = ({node, getNode, actions}) => {
     const slug = createFilePath({node, getNode});
     const fileNode = getNode(node.parent);
     const source = fileNode.sourceInstanceName;
-    const separtorIndex = ~slug.indexOf("--") ? slug.indexOf("--") : 0;
-    const shortSlugStart = separtorIndex ? separtorIndex + 2 : 0;
+    const separatorIndex = ~slug.indexOf("--") ? slug.indexOf("--") : 0;
+    const shortSlugStart = separatorIndex ? separatorIndex + 2 : 0;
 
     if (source === 'authors') {
         const username = slug.replace(/^\/|\/$/g, '');
@@ -29,7 +29,7 @@ exports.onCreateNode = ({node, getNode, actions}) => {
         createNodeField({
             node,
             name: 'slug',
-            value: `${separtorIndex ? "/" : ""}${slug.substring(shortSlugStart)}`
+            value: `${separatorIndex ? "/" : ""}${slug.substring(shortSlugStart)}`
         });
         
         if (node.frontmatter && node.frontmatter.author) {
@@ -43,7 +43,7 @@ exports.onCreateNode = ({node, getNode, actions}) => {
     createNodeField({
         node,
         name: 'prefix',
-        value: separtorIndex ? slug.substring(1, separtorIndex) : ""
+        value: separatorIndex ? slug.substring(1, separatorIndex) : ""
     });
     createNodeField({
         node,
