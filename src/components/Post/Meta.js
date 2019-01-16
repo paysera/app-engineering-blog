@@ -8,8 +8,8 @@ import {FaTag} from "react-icons/fa/";
 import {FaClock} from "react-icons/fa/";
 
 const Meta = props => {
-    const {prefix, authorName, category, theme, readingTime} = props;
-
+    const {prefix, authorName, theme, readingTime, tags} = props;
+    
     return (
         <p className="meta">
             {readingTime && (<span>
@@ -21,10 +21,12 @@ const Meta = props => {
             {authorName && (<span>
                 <FaUser size={18}/> {authorName}
             </span>)}
-            {category && (<span>
-                <FaTag size={18}/>
-                <Link to={`/category/${category.split(" ").join("-")}`}>{category}</Link>
-            </span>)}
+            {tags && tags.map(tag =>
+                <span>
+                    <FaTag size={18}/>
+                    <Link to={`/tag/${tag.split(" ").join("-")}`}>{tag}</Link>
+                </span>
+            )}
     
             {/* --- STYLES --- */}
             <style jsx>{`
@@ -60,7 +62,7 @@ Meta.propTypes = {
     prefix: PropTypes.string.isRequired,
     authorName: PropTypes.string,
     readingTime: PropTypes.string,
-    category: PropTypes.string,
+    tags: PropTypes.array.isRequired,
     theme: PropTypes.object.isRequired
 };
 

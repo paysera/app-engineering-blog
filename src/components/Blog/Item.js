@@ -16,8 +16,8 @@ const Item = props => {
       fields: { slug, prefix, author, readingTime: {text: readingTime} },
       frontmatter: {
         title,
-        category,
-        cover: cover
+        cover,
+        tags
       }
     }
   } = props;
@@ -46,9 +46,9 @@ const Item = props => {
             <span>
               <FaUser size={18} /> {author.frontmatter.name}
             </span>
-            {category && (
+            {tags && tags.map(tag =>
               <span>
-                <FaTag size={18} /> {category}
+                <FaTag size={18} /> {tag}
               </span>
             )}
           </p>

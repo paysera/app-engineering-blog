@@ -68,7 +68,6 @@ export const postQuery = graphql`
       frontmatter {
         title
         author
-        category
         cover {
           childImageSharp {
             resize(width: 300) {
@@ -76,6 +75,7 @@ export const postQuery = graphql`
             }
           }
         }
+        tags
       }
     }
     authors: allMarkdownRemark(filter:{fields: { source: { eq: "authors" } }}) {

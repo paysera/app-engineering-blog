@@ -2,7 +2,6 @@ const _ = require('lodash');
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const path = require('path');
 const Promise = require('bluebird');
-
 const {createFilePath} = require(`gatsby-source-filesystem`);
 
 const users = {};
@@ -59,7 +58,8 @@ exports.createPages = ({graphql, actions}) => {
     return new Promise((resolve, reject) => {
         const postTemplate = path.resolve("./src/templates/PostTemplate.js");
         const pageTemplate = path.resolve("./src/templates/PageTemplate.js");
-        const categoryTemplate = path.resolve("./src/templates/CategoryTemplate.js");
+        const tagTemplate = path.resolve("./src/templates/TagTemplate.js");
+        
         resolve(
             graphql(`
               {
@@ -78,7 +78,7 @@ exports.createPages = ({graphql, actions}) => {
                       }
                       frontmatter {
                         title
-                        category
+                        tags
                       }
                     }
                   }
@@ -92,28 +92,25 @@ exports.createPages = ({graphql, actions}) => {
 
                 const items = result.data.allMarkdownRemark.edges;
 
-                // Create category list
-                const categorySet = new Set();
+                // Create tag list
+                const tagSet = new Set();
                 items.forEach(edge => {
                     const {
                         node: {
-                            frontmatter: {category}
+                            frontmatter: {tags}
                         }
                     } = edge;
-
-                    if (category && category !== null) {
-                        categorySet.add(category);
-                    }
+                    
+                    (tags || []).forEach(tag => tagSet.add(tag));
                 });
 
-                // Create category pages
-                const categoryList = Array.from(categorySet);
-                categoryList.forEach(category => {
+                // Create tag pages
+                tagSet.forEach(tag => {
                     createPage({
-                        path: `/category/${_.kebabCase(category)}/`,
-                        component: categoryTemplate,
+                        path: `/tag/${_.kebabCase(tag)}/`,
+                        component: tagTemplate,
                         context: {
-                            category
+                            tag
                         }
                     });
                 });
@@ -174,3 +171,4 @@ exports.onCreateWebpackConfig = ({stage, actions}, options) => {
             });
     }
 };
+
