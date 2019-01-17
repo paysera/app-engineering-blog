@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "gatsby";
+import _ from "lodash";
 
 import {FaCalendar} from "react-icons/fa/";
 import {FaUser} from "react-icons/fa/";
@@ -24,7 +25,7 @@ const Meta = props => {
             {tags && tags.map(tag =>
                 <span>
                     <FaTag size={18}/>
-                    <Link to={`/tag/${tag.split(" ").join("-")}`}>{tag}</Link>
+                    <Link to={`/tag/${_.kebabCase(tag)}`}>{tag}</Link>
                 </span>
             )}
     
