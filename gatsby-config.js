@@ -2,6 +2,8 @@ require('dotenv').config();
 const config = require("./content/meta/config");
 const transformer = require("./src/utils/algolia");
 
+require('./src/utils/imagePathDumper').dumpOnGeneration('report/imagePaths.json');
+
 const query = `{
   allMarkdownRemark( filter: { fields: { slug: { ne: null } } }) {
     edges {
@@ -111,7 +113,8 @@ module.exports = {
                         resolve: 'gatsby-remark-images',
                         options: {
                             maxWidth: 800,
-                            backgroundColor: 'transparent'
+                            backgroundColor: 'transparent',
+                            linkImagesToOriginal: false
                         }
                     },
                     {
