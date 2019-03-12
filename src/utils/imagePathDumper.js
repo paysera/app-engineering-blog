@@ -6,7 +6,7 @@ function wrap(wrappedFunction, manifestPath, images) {
     return function(options) {
         const file = options.file;
         const result = wrappedFunction.apply(null, arguments);
-        
+
         if (file.sourceInstanceName === 'posts') {
             result.then(image => {
                 if (!images[file.relativePath]) {
@@ -15,14 +15,14 @@ function wrap(wrappedFunction, manifestPath, images) {
                 }
             });
         }
-        
+
         return result;
-    }
+    };
 }
 
 function writeManifest(manifestPath, images) {
     const dir = path.dirname(manifestPath);
-    if (!fs.existsSync(dir)){
+    if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
     }
     fs.writeFileSync(manifestPath, JSON.stringify(images));

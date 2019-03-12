@@ -1,7 +1,7 @@
 /**
  * How to run:
- * `npm run crosspost -- [--dry-run] [--post "2018-12-29--so-weve-started-to-write-a-blog"`]
- * 
+ * `npm run crosspost -- [--dry-run] [--post "2019-03-12--so-weve-started-to-write-a-blog"`]
+ *
  * Mainly based by https://cmichel.io/how-to-crosspost-to-medium/
  */
 
@@ -22,7 +22,6 @@ const publishPosts = async () => {
     } else {
         const posts = fs.readdirSync('content/posts');
         post = posts.pop();
-        
     }
     const pathToPost = getPathToPost(post);
 

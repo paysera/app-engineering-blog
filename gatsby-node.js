@@ -1,20 +1,20 @@
 const _ = require('lodash');
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path');
 const Promise = require('bluebird');
-const {createFilePath} = require(`gatsby-source-filesystem`);
+const { createFilePath } = require(`gatsby-source-filesystem`);
 
 const users = {};
-exports.onCreateNode = ({node, getNode, actions}) => {
-    const {createNodeField} = actions;
+exports.onCreateNode = ({ node, getNode, actions }) => {
+    const { createNodeField } = actions;
     if (node.internal.type !== 'MarkdownRemark') {
         return;
     }
-    
-    const slug = createFilePath({node, getNode});
+
+    const slug = createFilePath({ node, getNode });
     const fileNode = getNode(node.parent);
     const source = fileNode.sourceInstanceName;
-    const separatorIndex = ~slug.indexOf("--") ? slug.indexOf("--") : 0;
+    const separatorIndex = ~slug.indexOf('--') ? slug.indexOf('--') : 0;
     const shortSlugStart = separatorIndex ? separatorIndex + 2 : 0;
 
     if (source === 'authors') {
@@ -29,9 +29,9 @@ exports.onCreateNode = ({node, getNode, actions}) => {
         createNodeField({
             node,
             name: 'slug',
-            value: `${separatorIndex ? "/" : ""}${slug.substring(shortSlugStart)}`
+            value: `${separatorIndex ? '/' : ''}${slug.substring(shortSlugStart)}`
         });
-        
+
         if (node.frontmatter && node.frontmatter.author) {
             createNodeField({
                 node,
@@ -43,7 +43,7 @@ exports.onCreateNode = ({node, getNode, actions}) => {
     createNodeField({
         node,
         name: 'prefix',
-        value: separatorIndex ? slug.substring(1, separatorIndex) : ""
+        value: separatorIndex ? slug.substring(1, separatorIndex) : ''
     });
     createNodeField({
         node,
@@ -52,38 +52,38 @@ exports.onCreateNode = ({node, getNode, actions}) => {
     });
 };
 
-exports.createPages = ({graphql, actions}) => {
-    const {createPage} = actions;
+exports.createPages = ({ graphql, actions }) => {
+    const { createPage } = actions;
 
     return new Promise((resolve, reject) => {
-        const postTemplate = path.resolve("./src/templates/PostTemplate.js");
-        const pageTemplate = path.resolve("./src/templates/PageTemplate.js");
-        const tagTemplate = path.resolve("./src/templates/TagTemplate.js");
-        
+        const postTemplate = path.resolve('./src/templates/PostTemplate.js');
+        const pageTemplate = path.resolve('./src/templates/PageTemplate.js');
+        const tagTemplate = path.resolve('./src/templates/TagTemplate.js');
+
         resolve(
             graphql(`
-              {
-                allMarkdownRemark(
-                  filter: { fields: { slug: { ne: null } } }
-                  sort: { fields: [fields___prefix], order: DESC }
-                  limit: 1000
-                ) {
-                  edges {
-                    node {
-                      id
-                      fields {
-                        slug
-                        prefix
-                        source
-                      }
-                      frontmatter {
-                        title
-                        tags
-                      }
+                {
+                    allMarkdownRemark(
+                        filter: { fields: { slug: { ne: null } } }
+                        sort: { fields: [fields___prefix], order: DESC }
+                        limit: 1000
+                    ) {
+                        edges {
+                            node {
+                                id
+                                fields {
+                                    slug
+                                    prefix
+                                    source
+                                }
+                                frontmatter {
+                                    title
+                                    tags
+                                }
+                            }
+                        }
                     }
-                  }
                 }
-              }
             `).then(result => {
                 if (result.errors) {
                     console.log(result.errors);
@@ -97,10 +97,10 @@ exports.createPages = ({graphql, actions}) => {
                 items.forEach(edge => {
                     const {
                         node: {
-                            frontmatter: {tags}
+                            frontmatter: { tags }
                         }
                     } = edge;
-                    
+
                     (tags || []).forEach(tag => tagSet.add(tag));
                 });
 
@@ -117,7 +117,7 @@ exports.createPages = ({graphql, actions}) => {
 
                 // Create posts
                 const posts = items.filter(item => item.node.fields.source === 'posts');
-                posts.forEach(({node}, index) => {
+                posts.forEach(({ node }, index) => {
                     const slug = node.fields.slug;
                     const next = index === 0 ? undefined : posts[index - 1].node;
                     const prev = index === posts.length - 1 ? undefined : posts[index + 1].node;
@@ -137,7 +137,7 @@ exports.createPages = ({graphql, actions}) => {
 
                 // and pages.
                 const pages = items.filter(item => item.node.fields.source === 'pages');
-                pages.forEach(({node}) => {
+                pages.forEach(({ node }) => {
                     const slug = node.fields.slug;
                     const source = node.fields.source;
 
@@ -155,19 +155,20 @@ exports.createPages = ({graphql, actions}) => {
     });
 };
 
-exports.onCreateWebpackConfig = ({stage, actions}, options) => {
+exports.onCreateWebpackConfig = ({ stage, actions }, options) => {
     const plugins = [];
-    
+
     if (stage === 'build-javascript') {
-        plugins.push(new BundleAnalyzerPlugin({
-            analyzerMode: 'static',
-            reportFilename: "./report/treemap.html",
-            openAnalyzer: true,
-            logLevel: 'error',
-            defaultSizes: 'gzip'
-        }));
+        plugins.push(
+            new BundleAnalyzerPlugin({
+                analyzerMode: 'static',
+                reportFilename: './report/treemap.html',
+                openAnalyzer: true,
+                logLevel: 'error',
+                defaultSizes: 'gzip'
+            })
+        );
     }
 
-    actions.setWebpackConfig({plugins});
+    actions.setWebpackConfig({ plugins });
 };
-

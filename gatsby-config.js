@@ -1,6 +1,6 @@
 require('dotenv').config();
-const config = require("./content/meta/config");
-const transformer = require("./src/utils/algolia");
+const config = require('./content/meta/config');
+const transformer = require('./src/utils/algolia');
 
 require('./src/utils/imagePathDumper').dumpOnGeneration('report/imagePaths.json');
 
@@ -39,14 +39,12 @@ module.exports = {
         description: config.siteDescription,
         siteUrl: config.siteUrl,
         algolia: {
-            appId: process.env.ALGOLIA_APP_ID ? process.env.ALGOLIA_APP_ID : "",
-            searchOnlyApiKey: process.env.ALGOLIA_SEARCH_ONLY_API_KEY
-                ? process.env.ALGOLIA_SEARCH_ONLY_API_KEY
-                : "",
-            indexName: process.env.ALGOLIA_INDEX_NAME ? process.env.ALGOLIA_INDEX_NAME : ""
+            appId: process.env.ALGOLIA_APP_ID ? process.env.ALGOLIA_APP_ID : '',
+            searchOnlyApiKey: process.env.ALGOLIA_SEARCH_ONLY_API_KEY ? process.env.ALGOLIA_SEARCH_ONLY_API_KEY : '',
+            indexName: process.env.ALGOLIA_INDEX_NAME ? process.env.ALGOLIA_INDEX_NAME : ''
         },
         facebook: {
-            appId: process.env.FB_APP_ID ? process.env.FB_APP_ID : ""
+            appId: process.env.FB_APP_ID ? process.env.FB_APP_ID : ''
         }
     },
     plugins: [
@@ -138,11 +136,11 @@ module.exports = {
                             // Add custom styles
                             styles: {
                                 display: 'inline',
-                                margin: "0",
-                                'margin-top': "1px",
+                                margin: '0',
+                                'margin-top': '1px',
                                 position: 'relative',
-                                top: "5px",
-                                width: "25px"
+                                top: '5px',
+                                width: '25px'
                             }
                         }
                     }
@@ -164,39 +162,39 @@ module.exports = {
                 display: config.manifestDisplay,
                 icons: [
                     {
-                        src: "/icons/icon-48x48.png",
-                        sizes: "48x48",
-                        type: "image/png"
+                        src: '/icons/icon-48x48.png',
+                        sizes: '48x48',
+                        type: 'image/png'
                     },
                     {
-                        src: "/icons/icon-96x96.png",
-                        sizes: "96x96",
-                        type: "image/png"
+                        src: '/icons/icon-96x96.png',
+                        sizes: '96x96',
+                        type: 'image/png'
                     },
                     {
-                        src: "/icons/icon-144x144.png",
-                        sizes: "144x144",
-                        type: "image/png"
+                        src: '/icons/icon-144x144.png',
+                        sizes: '144x144',
+                        type: 'image/png'
                     },
                     {
-                        src: "/icons/icon-192x192.png",
-                        sizes: "192x192",
-                        type: "image/png"
+                        src: '/icons/icon-192x192.png',
+                        sizes: '192x192',
+                        type: 'image/png'
                     },
                     {
-                        src: "/icons/icon-256x256.png",
-                        sizes: "256x256",
-                        type: "image/png"
+                        src: '/icons/icon-256x256.png',
+                        sizes: '256x256',
+                        type: 'image/png'
                     },
                     {
-                        src: "/icons/icon-384x384.png",
-                        sizes: "384x384",
-                        type: "image/png"
+                        src: '/icons/icon-384x384.png',
+                        sizes: '384x384',
+                        type: 'image/png'
                     },
                     {
-                        src: "/icons/icon-512x512.png",
-                        sizes: "512x512",
-                        type: "image/png"
+                        src: '/icons/icon-512x512.png',
+                        sizes: '512x512',
+                        type: 'image/png'
                     }
                 ]
             }
@@ -231,7 +229,7 @@ module.exports = {
                                     description: edge.node.excerpt,
                                     url: site.siteMetadata.siteUrl + edge.node.fields.slug,
                                     guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                                    custom_elements: [{ "content:encoded": edge.node.html }]
+                                    custom_elements: [{ 'content:encoded': edge.node.html }]
                                 });
                             });
                         },
@@ -258,7 +256,7 @@ module.exports = {
                 }
               }
             `,
-                        output: "/rss.xml"
+                        output: '/rss.xml'
                     }
                 ]
             }

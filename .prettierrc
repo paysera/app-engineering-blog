@@ -1,4 +1,4 @@
 {
-  "printWidth": 100,
-  "singleQuote": false
+    "printWidth": 120,
+    "singleQuote": true
 }

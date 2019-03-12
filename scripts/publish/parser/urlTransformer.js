@@ -2,10 +2,10 @@ const url = require('url');
 const visit = require('unist-util-visit');
 const getImageUrl = require('./imageUrlResolver');
 
-function isUrlAbsolute(url) {
+function isUrlAbsolute(urlValue) {
     // catches http(s)://example.io but also //example.io
     const isAbsolute = new RegExp('^([a-z]+://|//)', 'i');
-    return isAbsolute.test(url);
+    return isAbsolute.test(urlValue);
 }
 
 const markFactory = () => {
@@ -32,9 +32,9 @@ function createUrlTransformer(options) {
         if (!node.url || isUrlAbsolute(node.url)) {
             return;
         }
-        
+
         const imageUrl = getImageUrl(postDirectory + url.resolve('/', node.url));
-        
+
         const absoluteUrl = url.resolve(siteUrl, imageUrl ? imageUrl : node.url);
         console.log(`\tRewriting link "${node.url}" to "${absoluteUrl}" ...`);
         node.url = absoluteUrl;

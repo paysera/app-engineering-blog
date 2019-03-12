@@ -1,12 +1,12 @@
-import { FaTag } from "react-icons/fa/";
-import PropTypes from "prop-types";
-import React from "react";
-import { graphql } from "gatsby";
-import { ThemeContext } from "../layouts";
-import Article from "../components/Article/";
-import Headline from "../components/Article/Headline";
-import List from "../components/List";
-import Seo from "../components/Seo";
+import { FaTag } from 'react-icons/fa/';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { graphql } from 'gatsby';
+import { ThemeContext } from '../layouts';
+import Article from '../components/Article/';
+import Headline from '../components/Article/Headline';
+import List from '../components/List';
+import Seo from '../components/Seo';
 
 const TagsPage = props => {
     const {
@@ -26,7 +26,7 @@ const TagsPage = props => {
                 frontmatter: { tags }
             }
         } = edge;
-        
+
         if (!tags) {
             return;
         }
@@ -63,14 +63,14 @@ const TagsPage = props => {
                         ))}
                         {/* --- STYLES --- */}
                         <style jsx>{`
-              h2 {
-                margin: 0 0 0.5em;
-              }
-              h2 :global(svg) {
-                height: 0.8em;
-                fill: ${theme.color.brand.primary};
-              }
-            `}</style>
+                            h2 {
+                                margin: 0 0 0.5em;
+                            }
+                            h2 :global(svg) {
+                                height: 0.8em;
+                                fill: ${theme.color.brand.primary};
+                            }
+                        `}</style>
                     </Article>
                 )}
             </ThemeContext.Consumer>
@@ -88,41 +88,41 @@ export default TagsPage;
 
 //eslint-disable-next-line no-undef
 export const query = graphql`
-  query PostsQuery {
-    posts: allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "//posts/[0-9]+.*--/" } }
-      sort: { fields: [fields___prefix], order: DESC }
-    ) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-            prefix
-          }
-          frontmatter {
-            title
-            author
-            tags
-            cover {
-              children {
-                ... on ImageSharp {
-                  fluid(maxWidth: 800, maxHeight: 360) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
+    query PostsQuery {
+        posts: allMarkdownRemark(
+            filter: { fileAbsolutePath: { regex: "//posts/[0-9]+.*--/" } }
+            sort: { fields: [fields___prefix], order: DESC }
+        ) {
+            edges {
+                node {
+                    excerpt
+                    fields {
+                        slug
+                        prefix
+                    }
+                    frontmatter {
+                        title
+                        author
+                        tags
+                        cover {
+                            children {
+                                ... on ImageSharp {
+                                    fluid(maxWidth: 800, maxHeight: 360) {
+                                        ...GatsbyImageSharpFluid_withWebp
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-              }
             }
-          }
         }
-      }
-    }
-    site {
-      siteMetadata {
-        facebook {
-          appId
+        site {
+            siteMetadata {
+                facebook {
+                    appId
+                }
+            }
         }
-      }
     }
-  }
 `;

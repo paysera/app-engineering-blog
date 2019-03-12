@@ -9,8 +9,8 @@ const createFeatureImage = (siteUrl, postDirectory, cover) => {
         type: `image`,
         title: null,
         alt: 'Featured Image',
-        url: url.resolve(siteUrl, getImageUrl(postDirectory + "/" + cover)),
-    }
+        url: url.resolve(siteUrl, getImageUrl(postDirectory + '/' + cover))
+    };
 };
 
 const createTitle = title => ({
@@ -19,13 +19,13 @@ const createTitle = title => ({
     children: [
         {
             type: `text`,
-            value: title,
-        },
-    ],
+            value: title
+        }
+    ]
 });
 
 const createHorizontalRule = () => ({
-    type: `thematicBreak`,
+    type: `thematicBreak`
 });
 
 const createReferenceToOriginalPost = (siteUrl, postUrl) => ({
@@ -33,7 +33,7 @@ const createReferenceToOriginalPost = (siteUrl, postUrl) => ({
     children: [
         {
             type: `text`,
-            value: `Originally published at `,
+            value: `Originally published at `
         },
         {
             type: 'link',
@@ -41,15 +41,20 @@ const createReferenceToOriginalPost = (siteUrl, postUrl) => ({
             children: [
                 {
                     type: 'text',
-                    value: siteUrl.replace(/^https?:\/\//m, ''),
-                },
-            ],
-        },
-    ],
+                    value: siteUrl.replace(/^https?:\/\//m, '')
+                }
+            ]
+        }
+    ]
 });
 
 function createTransformer(options) {
-    const { siteUrl, postUrl, frontmatter: { title, cover }, postDirectory } = options;
+    const {
+        siteUrl,
+        postUrl,
+        frontmatter: { title, cover },
+        postDirectory
+    } = options;
     return () => transformer;
 
     function transformer(tree) {
@@ -58,8 +63,8 @@ function createTransformer(options) {
             createTitle(title),
             ...tree.children,
             createHorizontalRule(),
-            createReferenceToOriginalPost(siteUrl, postUrl),
-        ].filter(node => !!node)
+            createReferenceToOriginalPost(siteUrl, postUrl)
+        ].filter(node => !!node);
     }
 }
 
