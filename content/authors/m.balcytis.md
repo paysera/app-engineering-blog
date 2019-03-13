@@ -3,5 +3,5 @@ avatar: https://en.gravatar.com/userimage/15752721/4bd83441545b29ce279c9279be31b
 name: Marius Balčytis
 ---
 
-**Marius Balčytis** Hello
+**Marius Balčytis**. Leading the development in Paysera
 
