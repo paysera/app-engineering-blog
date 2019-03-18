@@ -1,5 +1,5 @@
 ---
-title: Customising Gatsby
+title: Customizing Gatsby
 cover: cover.png
 tags:
     - gatsby
@@ -21,7 +21,7 @@ This blog was based on [HeroBlog](https://github.com/greglobinski/gatsby-starter
 
 It provides a nice design, quite a few features, including our needed features –  a blog with several static pages in the menu.
 
-If the template has all features you need, it's usually enough to customise some JSON files, find and replace
+If the template has all features you need, it's usually enough to customize some JSON files, find and replace
 some texts in the templates (no extra knowledge is needed) and provide content in markdown.
 
 In cases where you want to extend the functionality, you'll need to change the React components (templates), tweak
@@ -41,10 +41,10 @@ and React, if you haven't yet.
 ## What we've changed
 
 We've made several different types of changes:
-- customising the template and configuration;
+- customizing the template and configuration;
 - installing plugins;
 - extending available data structures and adding new features – custom author for each post and multiple tag support;
-- adding script for workflow customisation – cross posting to Medium.
+- adding script for workflow customization – cross posting to Medium.
 
 ## Installing plugins
 
@@ -67,7 +67,7 @@ You can check this out in
 ## Adding author support for blog posts
 
 Default templates usually place one pre-configured author everywhere. For our use-case,
-we need to easily customise the author for each post.
+we need to easily customize the author for each post.
 
 Intended behavior:
 1. We put each author's information in separate markdown document:
@@ -107,7 +107,7 @@ Blog post contents
 
 We expect the following result in the suffix of the post:
 
-![Suffix with Elvis signature](./elvis.png)
+![Suffix with Elvis signature](elvis.png)
 
 In the post list and post header we also expect to see the name of the author, `Elvis Presley` in this case.
 
