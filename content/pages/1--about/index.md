@@ -9,7 +9,7 @@ We, Paysera developers:
 - work only on long-term product development;
 - work on large and complex systems, split the code into separate services;
 - mainly use PHP 7 and Symfony framework for backend, ReactJS for frontend;
-- have 9 teams which integrate various roles: backend, frontend, mobile apps, QA, product owners, devops, secops;
+- have 10 international teams which integrate various roles: backend, frontend, mobile apps, QA, product owners, devops, secops;
 - work by agile principles;
 - put effort for automation and infrastructure, like CI/CD, containerisation with kubernetes;
 - focus on code quality: perform code reviews, ensure using best practices and our conventions;
@@ -52,7 +52,7 @@ with different and changing requirements.
 
 # Teams
 
-- 7 wide profile teams (PHP, JavaScript, devops);
+- 8 wide profile teams (PHP, JavaScript, devops);
 - 2 application development teams: for Android and iOS.
 
 Team usually consists of 4 to 8 devs (including Team Lead), a product owner and a QA/test automation specialist (for functional, browser-based tests only).
@@ -61,9 +61,9 @@ Developers have different roles - backend only, frontend only, full-stack or oth
 We also have some other roles for devs, like devops or secops.
 
 We are an international company – our teams work from different locations:
-- 7 teams work from Lithuania (6 mainly from Vilnius, one – from Kaunas). We're also looking for new developers to form teams in Klaipėda, Panėvežys and Šiauliai;
+- 9 teams work from Lithuania (8 mainly from Vilnius, one – from Kaunas). We're also looking for new developers to form teams in Klaipėda, Panėvežys and Šiauliai;
 - one team from Bulgaria;
-- one small team from Turkey.
+- we're currently looking to expand in several other countries.
 
 We always communicate with each other when needed, but try to keep the whole team in one place for as effective work as possible.
 
