@@ -13,6 +13,7 @@ const Item = props => {
         theme,
         post: {
             excerpt,
+            excerptHtml,
             fields: {
                 slug,
                 prefix,
@@ -58,7 +59,7 @@ const Item = props => {
                                 </span>
                             ))}
                     </p>
-                    <p>{excerpt}</p>
+                    <p dangerouslySetInnerHTML={{ __html: excerptHtml }} />
                 </Link>
             </li>
 
