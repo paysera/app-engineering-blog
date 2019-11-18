@@ -76,7 +76,8 @@ export const query = graphql`
         ) {
             edges {
                 node {
-                    excerpt(pruneLength: 280)
+                    excerptHtml: excerpt(pruneLength: 280, format: HTML)
+                    excerpt: excerpt(pruneLength: 280, format: PLAIN)
                     fields {
                         slug
                         prefix
